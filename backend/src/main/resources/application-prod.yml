@@ -1,0 +1,18 @@
+# Production profile: no demo data, secrets from the environment, quieter logging.
+spring:
+  flyway:
+    locations: classpath:db/migration
+  jpa:
+    show-sql: false
+
+springdoc:
+  api-docs:
+    enabled: ${SWAGGER_ENABLED:false}
+  swagger-ui:
+    enabled: ${SWAGGER_ENABLED:false}
+
+logging:
+  level:
+    root: INFO
+    com.eloria: INFO
+    org.hibernate.SQL: WARN

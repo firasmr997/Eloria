@@ -1,0 +1,18 @@
+# Development profile: demo seed data, local image storage, verbose logging.
+spring:
+  flyway:
+    # db/demo adds V10__insert_demo_data.sql (demo catalogue, team, gallery, results and the dev admin).
+    locations: classpath:db/migration,classpath:db/demo
+
+eloria:
+  jwt:
+    # Development-only fallback. Production refuses to start without a real JWT_SECRET.
+    secret: ${JWT_SECRET:dev-only-eloria-jwt-secret-change-me-0123456789abcdef}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5174,http://127.0.0.1:5174,http://localhost:4174}
+
+logging:
+  level:
+    com.eloria: DEBUG
+    org.springframework.security: INFO
+    org.flywaydb: INFO

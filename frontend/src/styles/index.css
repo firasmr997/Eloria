@@ -1,0 +1,307 @@
+@import 'tailwindcss';
+/* opsz build: weight plus optical size, so hairlines sharpen as the display size grows. */
+@import '@fontsource-variable/bodoni-moda/opsz.css';
+@import '@fontsource-variable/hanken-grotesk/wght.css';
+
+/*
+ * ÉLORIA design tokens. Travertine and espresso grounds, champagne metal as hairline only.
+ * Contrast (WCAG): ink 15:1, ink-muted 5.6:1 and champagne-deep 5.1:1 on ivory;
+ * on espresso: cream 14:1, cream-muted 7.8:1, champagne 6.2:1. Plain champagne is decorative on light grounds.
+ */
+@theme {
+  /* Grounds */
+  --color-ivory: #f6f1ea;
+  --color-porcelain: #fbf8f4;
+  --color-travertine: #e6dacb;
+  --color-sand: #d8c7b2;
+  --color-espresso: #241b17;
+  --color-espresso-raised: #30251f;
+
+  /* Text */
+  --color-ink: #241b17;
+  --color-ink-muted: #6b5d53;
+  --color-taupe: #8c7b6b;
+  --color-cream: #f3ebe1;
+  --color-cream-muted: #bfae9c;
+
+  /* Accents */
+  --color-champagne: #b8976a;
+  --color-champagne-light: #dcc8a6;
+  --color-champagne-deep: #7d6141;
+  --color-rose: #b88a80;
+  --color-rose-deep: #94604f;
+  --color-rose-tint: #f1e3dd;
+
+  /* Lines */
+  --color-line: #e2d6c8;
+  --color-line-strong: #cbb9a4;
+  --color-line-dark: #4a3c34;
+
+  /* Status */
+  --color-success: #4f6b4c;
+  --color-success-tint: #e3eadf;
+  --color-warning: #8a5f1e;
+  --color-warning-tint: #f3e6cf;
+  --color-error: #9b3f37;
+  --color-error-tint: #f4dfdb;
+
+  --font-display: 'Bodoni Moda Variable', 'Bodoni 72', 'Didot', Georgia, serif;
+  --font-sans: 'Hanken Grotesk Variable', 'Helvetica Neue', Arial, sans-serif;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+
+  --ease-silk: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-soft: 0 18px 40px -24px rgb(36 27 23 / 0.35);
+  --shadow-lift: 0 28px 60px -30px rgb(36 27 23 / 0.45);
+  --shadow-overlay: 0 40px 80px -30px rgb(20 14 11 / 0.55);
+
+  --breakpoint-xs: 26rem;
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scrollbar-color: var(--color-line-strong) var(--color-ivory);
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    font-feature-settings: 'ss01', 'kern';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    caret-color: var(--color-champagne-deep);
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-champagne-light);
+    color: var(--color-espresso);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ivory);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-line-strong);
+    border: 3px solid var(--color-ivory);
+    border-radius: 999px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-champagne-deep);
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+
+  /* Native date and time pickers follow the palette. */
+  input[type='date'] {
+    color-scheme: light;
+  }
+}
+
+/* ---------- Typography ---------- */
+@utility font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-feature-settings: 'lnum', 'kern';
+}
+
+@utility text-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 420;
+  font-size: clamp(3rem, 1.6rem + 5vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+
+@utility text-h1 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 430;
+  font-size: clamp(2.5rem, 1.7rem + 3.2vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+@utility text-h2 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 440;
+  font-size: clamp(2rem, 1.45rem + 2.2vw, 3.5rem);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+}
+
+@utility text-h3 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 460;
+  font-size: clamp(1.5rem, 1.25rem + 0.9vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+@utility text-h4 {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 1.375rem;
+  line-height: 1.25;
+}
+
+@utility text-lead {
+  font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  line-height: 1.6;
+}
+
+@utility text-small {
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+/* Metadata labels (durations, prices, categories). Never placed above a heading as an eyebrow. */
+@utility text-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+@utility text-button {
+  font-size: 0.8125rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+@utility measure {
+  max-width: 68ch;
+}
+
+/* ---------- Layout ---------- */
+@utility shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 88rem;
+  padding-inline: clamp(1rem, 0.4rem + 3vw, 3.5rem);
+}
+
+@utility section-y {
+  padding-block: clamp(5rem, 3.5rem + 6vw, 10rem);
+}
+
+/* Travertine: a fine mineral grain laid over stone fields. */
+@utility stone {
+  background-color: var(--color-travertine);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.33 0 0 0 0 0.25 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@utility grain-dark {
+  background-color: var(--color-espresso);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.85 0 0 0 0 0.76 0 0 0 0 0.62 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Champagne hairline used for rules and frames. */
+@utility hairline {
+  height: 1px;
+  background: var(--color-champagne);
+}
+
+/* Animated underline for text links in navigation. */
+@utility link-underline {
+  position: relative;
+  text-decoration: none;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.3em;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-silk);
+  }
+  &:hover::after,
+  &[aria-current='page']::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+@keyframes testimonial-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

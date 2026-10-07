@@ -1,0 +1,19 @@
+# Integration tests run against a throwaway PostgreSQL container (see AbstractIntegrationTest)
+# with the real Flyway migrations plus the demo data.
+spring:
+  flyway:
+    locations: classpath:db/migration,classpath:db/demo
+
+eloria:
+  jwt:
+    secret: integration-test-only-secret-0123456789abcdefghijklmnop
+  storage:
+    upload-directory: ${java.io.tmpdir}/eloria-test-uploads
+  rate-limit:
+    login-attempts: 1000
+    public-submissions: 1000
+
+logging:
+  level:
+    com.eloria: INFO
+    org.testcontainers: WARN

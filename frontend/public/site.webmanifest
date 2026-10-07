@@ -1,0 +1,14 @@
+{
+  "name": "ÉLORIA AESTHETIC",
+  "short_name": "ÉLORIA",
+  "description": "Aesthetic medicine & skin care in Paris",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6F1EA",
+  "theme_color": "#241B17",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/brand/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/brand/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
