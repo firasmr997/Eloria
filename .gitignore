@@ -26,6 +26,3 @@ frontend/test-results/
 # Local uploads (development)
 uploads/
 
-# Local design and agent tooling (not part of the project)
-.claude/
-.impeccable/
